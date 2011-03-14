@@ -58,10 +58,10 @@ module AfterCommit
               rollback_to_savepoint
               increment_transaction_pointer
             end
-            raise
           ensure
             AfterCommit.cleanup(self)
             decrement_transaction_pointer
+            raise
           end
         end 
         alias_method_chain :release_savepoint, :callback
